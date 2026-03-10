@@ -1,0 +1,84 @@
+.student-table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+
+}
+
+.student-table th{
+background:#007bff;
+color:white;
+padding:14px;
+font-size:16px;
+}
+
+.student-table td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+.student-table tr:hover{
+background:#f5f5f5;
+}
+
+.action-buttons{
+display:flex;
+justify-content:center;
+gap:10px;
+
+}
+
+.edit-btn{
+background:#28a745;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:5px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.edit-btn:hover{
+background:#1e7e34;
+}
+
+.delete-btn{
+background:#dc3545;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:5px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.delete-btn:hover{
+background:#c82333;
+}
+
+.excel-btn-container{
+display:flex;
+justify-content:flex-end;
+margin-top:20px;
+}
+
+.excel-btn{
+background:#ff9800;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:6px;
+cursor:pointer;
+font-weight:500;
+transition:0.3s;
+}
+
+.excel-btn:hover{
+background:#e68900;
+}
+.table-wrapper{
+overflow-x:auto;
+width:100%;
+}

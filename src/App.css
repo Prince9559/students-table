@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container{
+width:80%;
+margin:auto;
+margin-top:60px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title{
+text-align:center;
+margin-bottom:40px;
+font-size:32px;
+color:green;
+animation:fadeAnimation 1s infinite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+margin-bottom:40px;
 }
 
-.App-link {
-  color: #61dafb;
+.section-title{
+text-align:center;
+margin-bottom:20px;
+font-size:22px;
+color:#444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+@media (max-width:768px){
+
+.container{
+width:95%;
+margin-top:30px;
+}
+
+.title{
+font-size:24px;
+}
+
+.section-title{
+font-size:18px;
+}
+
+.student-form{
+flex-direction:column;
+align-items:center;
+gap:12px;
+}
+
+.student-form input{
+width:100%;
+}
+
+.student-form button{
+width:100%;
+}
+
+.table-wrapper{
+overflow-x:auto;
+}
+
+.action-buttons{
+display:flex;
+flex-direction:row;
+gap:5px;
+}
+
+.edit-btn,
+.delete-btn{
+padding:6px 10px;
+font-size:12px;
+}
+
+.excel-btn-container{
+justify-content:center;
+}
+
+.excel-btn{
+width:100%;
+}
+
 }
