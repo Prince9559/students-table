@@ -1,48 +1,65 @@
 import React, { createContext, useState, useEffect } from "react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-
 export const StudentContext = createContext();
 
 function StudentProvider({ children }) {
 
-  const [students, setStudents] = useState(() => {
-    const saved = localStorage.getItem("students");
-    return saved ? JSON.parse(saved) : [];
-  });
-
+  const [students, setStudents] = useState([]);
   const [editStudent, setEditStudent] = useState(null);
 
-  useEffect(() => {
-    localStorage.setItem("students", JSON.stringify(students));
-  }, [students]);
+  const API = "http://localhost:5000/students";
 
-  const addStudent = (student) => {
+  const fetchStudents = async () => {
 
-    const newStudent = {
-      id: Date.now(),
-      ...student
-    };
+    const res = await fetch(API);
+    const data = await res.json();
+    setStudents(data);
 
-    setStudents([...students, newStudent]);
   };
 
-  const deleteStudent = (id) => {
+  useEffect(() => {
+    fetchStudents();
+  }, []);
 
-    if (window.confirm("Are you sure you want to delete?")) {
-      const updated = students.filter((s) => s.id !== id);
-      setStudents(updated);
+  const addStudent = async (student) => {
 
+    await fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(student)
+    });
+
+    fetchStudents();
+  };
+
+
+  const deleteStudent = async (id) => {
+    if (window.confirm("Are you sure you want to delete?")) 
+      {
+      await fetch(`${API}/${id}`, 
+      {
+        method: "DELETE"
+      });
+
+      fetchStudents();
     }
   };
 
-  const updateStudent = (updatedStudent) => {
-    const updated = students.map((s) =>
-      s.id === updatedStudent.id ? updatedStudent : s
-    );
+  const updateStudent = async (student) => {
 
-    setStudents(updated);
+    await fetch(`${API}/${student.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(student)
+    });
+
     setEditStudent(null);
+    fetchStudents();
   };
 
   const downloadExcel = () => {
@@ -65,8 +82,8 @@ function StudentProvider({ children }) {
 
     <StudentContext.Provider
       value={{students,addStudent,deleteStudent,updateStudent,editStudent,setEditStudent,downloadExcel}}>
-
       {children}
+
     </StudentContext.Provider>
 
   );
